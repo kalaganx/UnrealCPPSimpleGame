@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "InputActionValue.h"
 #include "PlayerCharater.generated.h"
 
 UCLASS()
@@ -17,20 +16,17 @@ class UNREALCPPSIMPLEGAME_API APlayerCharater : public ACharacter
 
 	UPROPERTY(VisibleAnywhere,meta = (AllowPrivateAccess=true))
 	class USpringArmComponent* SpringArm;
+
+	// Scene Component to define spawn location and rotation
+	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess=true))
+	USceneComponent* SpawnPoint;
+	
+	UPROPERTY()
+	AActor* SpawnedActor;
 	
 protected:
 	UPROPERTY(EditAnywhere, Category = "EnchancedInput")
 	class UInputMappingContext* InputMapping;
-	
-	UPROPERTY(EditAnywhere, Category = "EnchancedInput")
-	class UInputAction* JumpActon;
-
-	UPROPERTY(EditAnywhere, Category = "EnchancedInput")
-	class UInputAction* MoveAction;
-	
-	UPROPERTY(EditAnywhere, Category = "EnchancedInput")
-	class UInputAction* LookAction;
-	
 public:
 	// Sets default values for this character's properties
 	APlayerCharater();
@@ -47,7 +43,16 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 protected:
-	void Move(const FInputActionValue& InputValue);
-	void Look(const FInputActionValue& InputValue);
+	UFUNCTION(BlueprintCallable)
+	void Move(const FVector2D& InputValue);
+
+	UFUNCTION(BlueprintCallable)
+	void Look(const FVector2D& InputValue);
+
+	UFUNCTION(BlueprintCallable)
 	void Jumping();
+
+	UFUNCTION(BlueprintCallable)
+	void SpawnBloack(TSubclassOf<AActor> ActorClass);
+	
 };
