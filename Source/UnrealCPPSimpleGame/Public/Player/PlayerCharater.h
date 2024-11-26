@@ -4,13 +4,33 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "InputActionValue.h"
 #include "PlayerCharater.generated.h"
 
 UCLASS()
 class UNREALCPPSIMPLEGAME_API APlayerCharater : public ACharacter
 {
 	GENERATED_BODY()
+	
+	UPROPERTY(VisibleAnywhere,meta = (AllowPrivateAccess=true))
+	class UCameraComponent* Camera;
 
+	UPROPERTY(VisibleAnywhere,meta = (AllowPrivateAccess=true))
+	class USpringArmComponent* SpringArm;
+	
+protected:
+	UPROPERTY(EditAnywhere, Category = "EnchancedInput")
+	class UInputMappingContext* InputMapping;
+	
+	UPROPERTY(EditAnywhere, Category = "EnchancedInput")
+	class UInputAction* JumpActon;
+
+	UPROPERTY(EditAnywhere, Category = "EnchancedInput")
+	class UInputAction* MoveAction;
+	
+	UPROPERTY(EditAnywhere, Category = "EnchancedInput")
+	class UInputAction* LookAction;
+	
 public:
 	// Sets default values for this character's properties
 	APlayerCharater();
@@ -25,6 +45,9 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
 protected:
-	class UCameraComponent* camera;
+	void Move(const FInputActionValue& InputValue);
+	void Look(const FInputActionValue& InputValue);
+	void Jumping();
 };
