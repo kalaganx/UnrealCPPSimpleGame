@@ -17,16 +17,26 @@ class UNREALCPPSIMPLEGAME_API APlayerCharater : public ACharacter
 	UPROPERTY(VisibleAnywhere,meta = (AllowPrivateAccess=true))
 	class USpringArmComponent* SpringArm;
 
+	UPROPERTY(VisibleAnywhere,meta = (AllowPrivateAccess=true))
+	class UTextRenderComponent* TextRender;
+
 	// Scene Component to define spawn location and rotation
 	UPROPERTY(VisibleAnywhere, meta = (AllowPrivateAccess=true))
 	USceneComponent* SpawnPoint;
-	
+
 	UPROPERTY()
-	AActor* SpawnedActor;
-	
+	int Index = 0;
 protected:
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actors")
+	TArray<UClass*> SelectedActor;
+    	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actors")
+	TArray<AActor*> SpawnedActor;
+	
 	UPROPERTY(EditAnywhere, Category = "EnchancedInput")
 	class UInputMappingContext* InputMapping;
+	
 public:
 	// Sets default values for this character's properties
 	APlayerCharater();
@@ -53,6 +63,8 @@ protected:
 	void Jumping();
 
 	UFUNCTION(BlueprintCallable)
-	void SpawnBloack(TSubclassOf<AActor> ActorClass);
-	
+	void SpawnBloack();
+
+	UFUNCTION(BlueprintCallable)
+	void ChangeIndex(const float& InputValue);
 };

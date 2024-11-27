@@ -3,8 +3,10 @@
 #include "UnrealCPPSimpleGame/Public/Player/PlayerCharater.h"
 #include "EnhancedInputSubsystems.h"
 #include "Camera/CameraComponent.h"
+#include "Components/TextRenderComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+
 
 // Sets default values
 APlayerCharater::APlayerCharater()
@@ -22,6 +24,10 @@ APlayerCharater::APlayerCharater()
     Camera->SetupAttachment(SpringArm);
 
     // Create and attach the SpawnPoint component
+    TextRender = CreateDefaultSubobject<UTextRenderComponent>("TextRender");
+    TextRender->SetupAttachment(RootComponent);
+
+    // Create and attach the SpawnPoint component
     SpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("SpawnPoint"));
     SpawnPoint->SetupAttachment(RootComponent);
 
@@ -34,6 +40,13 @@ APlayerCharater::APlayerCharater()
 void APlayerCharater::BeginPlay()
 {
     Super::BeginPlay();
+
+    SpawnedActor.SetNum(SelectedActor.Num());
+    if (TextRender)
+    {
+        // Converti l'intero in stringa e poi in FText
+        TextRender->SetText(FText::FromString(FString::FromInt(Index)));
+    }
 }
 
 // Called every frame
@@ -86,11 +99,17 @@ void APlayerCharater::Jumping()
     ACharacter::Jump();
 }
 
-void APlayerCharater::SpawnBloack(TSubclassOf<AActor> ActorClass)
+void APlayerCharater::SpawnBloack()
 {
-    if (!ActorClass) // Check if the ActorClass is valid
+    if (SelectedActor.Num() == 0 || !SelectedActor.IsValidIndex(Index)) // Check if the ActorClass is valid
     {
         UE_LOG(LogTemp, Error, TEXT("No ActorClass provided for spawning!"));
+        return;
+    }
+
+    if (!SpawnPoint)
+    {
+        UE_LOG(LogTemp, Error, TEXT("SpawnPoint is null!"));
         return;
     }
 
@@ -107,11 +126,32 @@ void APlayerCharater::SpawnBloack(TSubclassOf<AActor> ActorClass)
         FVector SpawnLocation = SpawnPoint->GetComponentLocation();
         FRotator SpawnRotation = SpawnPoint->GetComponentRotation();
 
-        if (SpawnedActor)
+        if (SpawnedActor[Index])
         {
-            SpawnedActor->Destroy();
+            SpawnedActor[Index]->SetActorLocation(SpawnLocation); // Sposta ActorToMove nella posizione di TargetActor
+            SpawnedActor[Index]->SetActorRotation(SpawnRotation);
+        }else
+        {
+            // Spawn the actor
+            SpawnedActor[Index] = World->SpawnActor<AActor>(SelectedActor[Index], SpawnLocation, SpawnRotation, SpawnParams);
         }
-        // Spawn the actor
-        SpawnedActor = World->SpawnActor<AActor>(ActorClass, SpawnLocation, SpawnRotation, SpawnParams);
     }
+}
+
+void APlayerCharater::ChangeIndex(const float& InputValue)
+{
+    Index = Index + InputValue;
+    if (Index < 0)
+    {
+        Index = SelectedActor.Num() - 1;
+    }
+    if (Index > SelectedActor.Num()-1)
+    {
+        Index = 0;
+    }
+    if (TextRender)
+    {
+        // Converti l'intero in stringa e poi in FText
+        TextRender->SetText(FText::FromString(FString::FromInt(Index)));
+    };
 }
