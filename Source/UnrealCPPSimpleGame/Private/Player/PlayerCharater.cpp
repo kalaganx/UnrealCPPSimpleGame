@@ -128,13 +128,10 @@ void APlayerCharater::SpawnBloack()
 
         if (SpawnedActor[Index])
         {
-            SpawnedActor[Index]->SetActorLocation(SpawnLocation); // Sposta ActorToMove nella posizione di TargetActor
-            SpawnedActor[Index]->SetActorRotation(SpawnRotation);
-        }else
-        {
-            // Spawn the actor
-            SpawnedActor[Index] = World->SpawnActor<AActor>(SelectedActor[Index], SpawnLocation, SpawnRotation, SpawnParams);
+            SpawnedActor[Index]->Destroy();
         }
+        // Spawn the actor
+        SpawnedActor[Index] = World->SpawnActor<AActor>(SelectedActor[Index], SpawnLocation, SpawnRotation, SpawnParams);
     }
 }
 
