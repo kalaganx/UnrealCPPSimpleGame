@@ -21,7 +21,7 @@ AJumpPad::AJumpPad()
 
 	// Create and attach the trigger box
 	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
-	TriggerBox->SetupAttachment(RootComponent);
+	TriggerBox->SetupAttachment(BlockMesh);
 
 	// Bind the overlap event
 	TriggerBox->OnComponentBeginOverlap.AddDynamic(this, &AJumpPad::OnOverlapBegin);
