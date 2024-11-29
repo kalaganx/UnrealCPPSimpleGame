@@ -17,6 +17,7 @@ APressurePlate::APressurePlate()
     // Create and attach PressurePlatePlate
     PressurePlatePlate = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Plate"));
     PressurePlatePlate->SetupAttachment(PressurePlateBase);
+    PressurePlateBase->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
     // Create and attach TriggerBox
     TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
@@ -45,7 +46,7 @@ void APressurePlate::Tick(float DeltaTime)
 
 void APressurePlate::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-    if (OtherActor && OtherActor != this)
+    if (OtherActor && OtherActor != this && OtherActor)
     {
         // Check if the overlapping actor has physics
         UPrimitiveComponent* OtherActorComp = Cast<UPrimitiveComponent>(OtherActor->GetRootComponent());

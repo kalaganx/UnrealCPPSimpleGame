@@ -125,7 +125,7 @@ void APlayerCharater::SpawnBloack()
         // Get the spawn location and rotation from the SpawnPoint
         FVector SpawnLocation = SpawnPoint->GetComponentLocation();
         FRotator SpawnRotation = SpawnPoint->GetComponentRotation();
-
+        
         if (SpawnedActor[Index])
         {
             SpawnedActor[Index]->Destroy();
