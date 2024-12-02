@@ -69,6 +69,12 @@ void APressurePlate::OnOverlapEnd(UPrimitiveComponent* OverlappedComponent, AAct
     UE_LOG(LogTemp, Error, TEXT("dsadad as"));
     if (OtherActor && OtherActor != this)
     {
+        // Check if the overlapping actor has physics
+        UPrimitiveComponent* OtherActorComp = Cast<UPrimitiveComponent>(OtherActor->GetRootComponent());
+        // Verifica se l'attore che entra è il Player Character
+        APawn* PlayerPawn = Cast<APawn>(OtherActor);
+
+        if ((OtherActorComp && OtherActorComp->IsSimulatingPhysics())||(PlayerPawn && PlayerPawn->IsPlayerControlled())){return;}
         Activeted = IsActorInTriggerBox();
         if (!Activeted)
         {

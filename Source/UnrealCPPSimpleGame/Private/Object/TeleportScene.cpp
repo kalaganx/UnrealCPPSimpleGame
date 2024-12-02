@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/BoxComponent.h"
+#include "GameFramework/Character.h"
 
 // Sets default values
 ATeleportScene::ATeleportScene()
@@ -15,6 +16,7 @@ ATeleportScene::ATeleportScene()
 	// Create and attach PressurePlateBase
 	Base = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Base"));
 	Base->SetupAttachment(RootComponent);
+	Base->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 	// Create and attach TriggerBox
 	TriggerBox = CreateDefaultSubobject<UBoxComponent>(TEXT("TriggerBox"));
@@ -40,16 +42,28 @@ void ATeleportScene::Tick(float DeltaTime)
 
 void ATeleportScene::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
+	if (!OtherActor){return;}
 	APawn* PlayerPawn = Cast<APawn>(OtherActor);
-	if (PlayerPawn && PlayerPawn->IsPlayerControlled())
+	// Tenta di castare l'OtherActor a un ACharacter
+	ACharacter* OverlappingCharacter = Cast<ACharacter>(OtherActor);
+	if (OverlappingCharacter)
 	{
-		if (Scene.IsNone())
+		// Recupera il player character
+		ACharacter* PlayerCharacter = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+
+		// Confronta i due puntatori
+		if (OverlappingCharacter == PlayerCharacter)
 		{
-			UE_LOG(LogTemp, Warning, TEXT("Il nome del livello non è valido."));
-			return;
+			if (PlayerPawn && PlayerPawn->IsPlayerControlled())
+			{
+				if (Scene.IsNone())
+				{
+					UE_LOG(LogTemp, Warning, TEXT("Il nome del livello non è valido."));
+					return;
+				}
+			}
+			// Carica il livello specificato
+			UGameplayStatics::OpenLevel(GetWorld(), Scene);
 		}
 	}
-	
-	// Carica il livello specificato
-	UGameplayStatics::OpenLevel(GetWorld(), Scene);
 }
