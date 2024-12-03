@@ -4,7 +4,6 @@
 #include "Player/SpawnPlatform.h"
 
 #include "Components/TextRenderComponent.h"
-#include "Kismet/GameplayStatics.h"
 
 // Sets default values for this component's properties
 USpawnPlatform::USpawnPlatform()
@@ -64,8 +63,6 @@ void USpawnPlatform::SpawnBloack()
         
 		if (SpawnedActor[Index])
 		{
-			//SpawnedActor[Index]->SetActorLocation(SpawnLocation,false,nullptr,ETeleportType::ResetPhysics);
-			//SpawnedActor[Index]->SetActorRotation(SpawnRotation);
 			SpawnedActor[Index]->SetActorLocationAndRotation(SpawnLocation,SpawnRotation,false, nullptr,ETeleportType::TeleportPhysics);
 		}
 		else
