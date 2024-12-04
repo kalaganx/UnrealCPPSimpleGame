@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "Player/SpawnPlatform.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "PlayerCharater.generated.h"
@@ -18,9 +19,20 @@ class UNREALCPPSIMPLEGAME_API APlayerCharater : public ACharacter
 	class USpringArmComponent* SpringArm;
 
 protected:
+
+	UPROPERTY(EditAnywhere , BlueprintReadWrite)
+	USpawnPlatform* SpawnPlatform;
 	
 	UPROPERTY(EditAnywhere, Category = "EnchancedInput")
 	class UInputMappingContext* InputMapping;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class UTextRenderComponent* TextRender;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class USceneComponent* SpawnPoint;
+
+	FTimerHandle TimerHandle; // Gestisce il timer
 	
 public:
 	// Sets default values for this character's properties
@@ -46,4 +58,16 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	void Jumping();
+
+	UFUNCTION(BlueprintCallable)
+	void SpawnB();
+
+	UFUNCTION(BlueprintCallable)
+	void ChangeIndex(int i);
+
+	UFUNCTION()
+	void ResetPosition(FVector StartingPosition);
+
+	UFUNCTION()
+	void SetSetting();
 };

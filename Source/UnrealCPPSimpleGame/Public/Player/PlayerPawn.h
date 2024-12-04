@@ -24,8 +24,6 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void Jump();
 	UFUNCTION(BlueprintCallable)
-	void StopJumping();
-	UFUNCTION(BlueprintCallable)
 	void Look(const FVector2D& InputValue);
 
 protected:
@@ -34,27 +32,30 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "EnchancedInput")
 	class UInputMappingContext* InputMapping;
 	
-	UPROPERTY(VisibleAnywhere,meta = (AllowPrivateAccess=true))
-	UStaticMeshComponent* Mesh;
+	UPROPERTY(EditAnywhere,meta = (AllowPrivateAccess=true))
+	USkeletalMeshComponent* Mesh;
 
-	UPROPERTY(VisibleAnywhere,meta = (AllowPrivateAccess=true))
+	UPROPERTY(EditAnywhere,meta = (AllowPrivateAccess=true))
 	class UFloatingPawnMovement* FloatingMovement;
 
-	UPROPERTY(VisibleAnywhere,meta = (AllowPrivateAccess=true))
+	UPROPERTY(EditAnywhere,meta = (AllowPrivateAccess=true))
 	class UCameraComponent* Camera;
 
-	UPROPERTY(VisibleAnywhere,meta = (AllowPrivateAccess=true))
+	UPROPERTY(EditAnywhere,meta = (AllowPrivateAccess=true))
 	class USpringArmComponent* SpringArm;
 
-	UPROPERTY(VisibleAnywhere,meta = (AllowPrivateAccess=true))
+	UPROPERTY(EditAnywhere,meta = (AllowPrivateAccess=true))
 	class UCapsuleComponent* CapsuleComponent;
 
+	FVector FinalPositionJump; 
 	FVector CurrentVelocity;
-	bool bIsJumping = true;
+	bool bIsJumping = false;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float JumpForce = 600.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float Gravity = -980.0f;
 
 	bool IsGrounded() const;
+
+	bool IsTouchingRoof() const;
 };

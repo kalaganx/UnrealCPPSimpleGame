@@ -41,13 +41,12 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
-protected:
 	UFUNCTION(BlueprintCallable)
 	void SpawnBloack();
 
 	UFUNCTION(BlueprintCallable)
-	void ChangeIndex(const float& InputValue);
+	void ChangeIndex(const int& InputValue);
 
 	UFUNCTION(BlueprintCallable)
-	void SetList(TArray<UClass*> SObject);
+	void StartingSet(USceneComponent* SP,UTextRenderComponent* Text);
 };

@@ -20,7 +20,7 @@ APlayerPawn::APlayerPawn()
     RootComponent = CapsuleComponent;
 
     // Mesh
-    Mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
+    Mesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Mesh"));
     Mesh->SetupAttachment(RootComponent);
 
     // Creazione e configurazione dello SpringArm
@@ -51,18 +51,29 @@ void APlayerPawn::Tick(float DeltaTime)
     // Applicazione della gravità se non è a terra
     if (!IsGrounded())
     {
-       CurrentVelocity.Z += Gravity * DeltaTime;
+        // Non è a terra: applica gravità
+        CurrentVelocity.Z += Gravity * DeltaTime;
     }
     else
     {
-        if (!bIsJumping)
+        // È a terra
+        if (bIsJumping)
         {
-            CurrentVelocity.Z = 0+JumpForce;
+            // Inizia il salto
+            CurrentVelocity.Z = JumpForce;
+        }
+        else if (IsTouchingRoof())
+        {
+            // Tocca il soffitto: applica gravità per "scendere"
+            CurrentVelocity.Z = 0;
         }
         else
         {
+            // È a terra e non sta saltando: ferma il movimento verticale
             CurrentVelocity.Z = 0;
         }
+
+        bIsJumping = !IsGrounded();
     }
 
     // Movimento del Pawn
@@ -107,39 +118,50 @@ void APlayerPawn::Jump()
     }
 }
 
-void APlayerPawn::StopJumping()
-{
-    if (bIsJumping)
-    {
-        bIsJumping = false;
-    }
-}
-
 bool APlayerPawn::IsGrounded() const
 {
-    FVector Start = GetActorLocation();
-    FVector End = Start - FVector(0.f, 0.f, 100.f); // Piccolo raggio per il controllo del terreno
-    float Radius = 50.f;
+    UWorld* World = this->GetWorld();
+    FVector Start = GetActorLocation()-FVector(0.f, 0.f, 40.f);
+    FVector End = Start - FVector(0.f, 0.f, 20.f); // Piccolo raggio per il controllo del terreno
 
     FHitResult HitResult;
-    FCollisionQueryParams QueryParams;
-    QueryParams.AddIgnoredActor(this); // Ignora il Pawn stesso
+    FCollisionQueryParams CollisionParams;
+    CollisionParams.AddIgnoredActor(this); // Ignora l'attore stesso
 
     // Esegui Sphere Trace
-    bool bHit = GetWorld()->SweepSingleByChannel(
-        HitResult,
-        Start,
-        End,
-        FQuat::Identity,
-        ECC_Visibility,
-        FCollisionShape::MakeSphere(Radius),
-        QueryParams
+    bool bHit = World->LineTraceSingleByChannel(HitResult, Start, End,
+        ECC_Visibility, // Canale di collisione, puoi modificarlo se necessario
+        CollisionParams
     );
 
     // Debug visivo (opzionale)
 #if WITH_EDITOR
     FColor TraceColor = bHit ? FColor::Green : FColor::Red;
-    DrawDebugSphere(GetWorld(), Start, Radius, 12, TraceColor, false, 1.0f);
+    DrawDebugLine(GetWorld(), Start, End, TraceColor, false, 1.0f, 0, 2.0f);
+#endif
+
+    return bHit;
+}
+
+bool APlayerPawn::IsTouchingRoof() const
+{
+    UWorld* World = this->GetWorld();
+    FVector Start = GetActorLocation()+FVector(0.f, 0.f, 40.f);
+    FVector End = Start + FVector(0.f, 0.f, 20.f); // Piccolo raggio per il controllo del terreno
+
+    FHitResult HitResult;
+    FCollisionQueryParams CollisionParams;
+    CollisionParams.AddIgnoredActor(this); // Ignora l'attore stesso
+
+    // Esegui Sphere Trace
+    bool bHit = World->LineTraceSingleByChannel(HitResult, Start, End,
+        ECC_Visibility, // Canale di collisione, puoi modificarlo se necessario
+        CollisionParams
+    );
+
+    // Debug visivo (opzionale)
+#if WITH_EDITOR
+    FColor TraceColor = bHit ? FColor::Yellow : FColor::Blue;
     DrawDebugLine(GetWorld(), Start, End, TraceColor, false, 1.0f, 0, 2.0f);
 #endif
 

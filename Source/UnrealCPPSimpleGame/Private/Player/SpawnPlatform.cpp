@@ -4,6 +4,7 @@
 #include "Player/SpawnPlatform.h"
 
 #include "Components/TextRenderComponent.h"
+#include "TimerManager.h"
 
 // Sets default values for this component's properties
 USpawnPlatform::USpawnPlatform()
@@ -23,12 +24,6 @@ void USpawnPlatform::BeginPlay()
 
 	// ...
 	SpawnedActor.SetNum(SelectedActor.Num());
-	if (TextRender)
-	{
-		// Converti l'intero in stringa e poi in FText
-		TextRender->SetText(FText::FromString(FString::FromInt(Index)));
-	}
-	
 }
 
 
@@ -60,6 +55,29 @@ void USpawnPlatform::SpawnBloack()
 	{
 		FVector SpawnLocation = SpawnPoint->GetComponentLocation();
 		FRotator SpawnRotation = SpawnPoint->GetComponentRotation();
+
+		// Raggio della sfera
+		float SphereRadius = 20.f;
+
+		// Risultato del trace
+		FHitResult HitResult;
+
+		// Parametri di collisione
+		FCollisionQueryParams CollisionParams;
+		CollisionParams.AddIgnoredActor(SpawnPoint->GetAttachmentRootActor()); // Ignora l'attore stesso
+
+		// Esegui lo Sphere Trace
+		bool bHit = World->SweepSingleByChannel(
+			HitResult,
+			SpawnLocation,
+			SpawnLocation,
+			FQuat::Identity, // Nessuna rotazione
+			ECC_Visibility,  // Canale di collisione
+			FCollisionShape::MakeSphere(SphereRadius), // Crea una sfera per il trace
+			CollisionParams
+		);
+
+		if (bHit) return;
         
 		if (SpawnedActor[Index])
 		{
@@ -74,7 +92,7 @@ void USpawnPlatform::SpawnBloack()
 	}
 }
 
-void USpawnPlatform::ChangeIndex(const float& InputValue=0)
+void USpawnPlatform::ChangeIndex(const int& InputValue=0)
 {
 	Index = Index + InputValue;
 	if (Index < 0)
@@ -92,8 +110,9 @@ void USpawnPlatform::ChangeIndex(const float& InputValue=0)
 	};
 }
 
-void USpawnPlatform::SetList(TArray<UClass*> SObject)
+void USpawnPlatform::StartingSet(USceneComponent* SP,UTextRenderComponent* Text)
 {
-	SelectedActor = SObject;
-	SpawnedActor.SetNum(SelectedActor.Num());
+	if (!SP || !Text) return;
+	TextRender = Text;
+	SpawnPoint = SP;
 }

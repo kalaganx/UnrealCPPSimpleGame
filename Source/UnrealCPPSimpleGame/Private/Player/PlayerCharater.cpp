@@ -5,6 +5,9 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Player/SpawnPlatform.h"
+#include "Components/TextRenderComponent.h"
+#include "TimerManager.h"
 
 
 // Sets default values
@@ -22,15 +25,24 @@ APlayerCharater::APlayerCharater()
     Camera = CreateDefaultSubobject<UCameraComponent>("Player Camera");
     Camera->SetupAttachment(SpringArm);
 
+    TextRender = CreateDefaultSubobject<UTextRenderComponent>("TextRender");
+    TextRender->SetupAttachment(RootComponent);
+
+    SpawnPoint = CreateDefaultSubobject<USceneComponent>("SpawnPoint");
+    SpawnPoint->SetupAttachment(RootComponent);
+
     // Enable character rotation based on camera rotation
     bUseControllerRotationYaw = true; // Allow character to rotate with yaw input
     GetCharacterMovement()->bOrientRotationToMovement = true; // Allow movement to control rotation
+
+    SpawnPlatform = CreateDefaultSubobject<USpawnPlatform>("SpawnPlatform");
 }
 
 // Called when the game starts or when spawned
 void APlayerCharater::BeginPlay()
 {
     Super::BeginPlay();
+    SetSetting();
 }
 
 // Called every frame
@@ -81,4 +93,38 @@ void APlayerCharater::Look(const FVector2D& InputValue)
 void APlayerCharater::Jumping()
 {
     ACharacter::Jump();
+}
+
+void APlayerCharater::SpawnB()
+{
+    if (!SpawnPlatform) return;
+    FVector StPos = this->GetActorLocation();
+    SpawnPlatform->SpawnBloack();
+    if (GetWorld())
+    {
+        // Crea un Timer Delegate per passare i parametri
+        FTimerDelegate TimerDelegate;
+        TimerDelegate.BindUFunction(this, FName("ResetPosition"),StPos);
+
+        // Configura il timer con il delegate
+        GetWorld()->GetTimerManager().SetTimer(TimerHandle,TimerDelegate,0.01f,false);
+    }
+}
+
+void APlayerCharater::ChangeIndex(int i)
+{
+    if (!SpawnPlatform) return;
+    SpawnPlatform->ChangeIndex(i);
+}
+
+void APlayerCharater::ResetPosition(FVector StartingPosition)
+{
+    this->SetActorLocation(StartingPosition);
+}
+
+void APlayerCharater::SetSetting()
+{
+    if (!SpawnPlatform) return;
+    SpawnPlatform -> StartingSet(SpawnPoint,TextRender);
+    SpawnPlatform -> ChangeIndex(0);
 }
