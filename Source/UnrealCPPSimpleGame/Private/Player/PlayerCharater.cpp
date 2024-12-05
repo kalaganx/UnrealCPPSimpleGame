@@ -8,7 +8,6 @@
 #include "Player/SpawnPlatform.h"
 #include "Components/TextRenderComponent.h"
 #include "TimerManager.h"
-#include "Components/WidgetComponent.h"
 
 
 // Sets default values
@@ -110,6 +109,12 @@ void APlayerCharater::SpawnB()
         // Configura il timer con il delegate
         GetWorld()->GetTimerManager().SetTimer(TimerHandle,TimerDelegate,0.01f,false);
     }
+}
+
+void APlayerCharater::DestroyB()
+{
+    if (!SpawnPlatform) return;
+    SpawnPlatform->DeletBloack();
 }
 
 void APlayerCharater::ChangeIndex(int i)

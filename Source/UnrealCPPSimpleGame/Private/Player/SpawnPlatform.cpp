@@ -92,6 +92,21 @@ void USpawnPlatform::SpawnBloack()
 	}
 }
 
+void USpawnPlatform::DeletBloack()
+{
+	if (SpawnedActor.Num() == 0 || !SpawnedActor.IsValidIndex(Index)) // Check if the ActorClass is valid
+	{
+		UE_LOG(LogTemp, Error, TEXT("No ActorClass provided for spawning!"));
+		return;
+	}
+
+	if (SpawnedActor[Index])
+	{
+		SpawnedActor[Index]->Destroy();
+		SpawnedActor[Index] = nullptr;
+	}
+}
+
 void USpawnPlatform::ChangeIndex(const int& InputValue=0)
 {
 	Index = Index + InputValue;

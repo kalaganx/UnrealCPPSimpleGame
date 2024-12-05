@@ -63,6 +63,9 @@ protected:
 	void SpawnB();
 
 	UFUNCTION(BlueprintCallable)
+	void DestroyB();
+
+	UFUNCTION(BlueprintCallable)
 	void ChangeIndex(int i);
 
 	UFUNCTION()
