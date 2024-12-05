@@ -8,6 +8,7 @@
 #include "Player/SpawnPlatform.h"
 #include "Components/TextRenderComponent.h"
 #include "TimerManager.h"
+#include "Components/WidgetComponent.h"
 
 
 // Sets default values
