@@ -76,6 +76,11 @@ void USpawnPlatform::SpawnBloack()
 			FCollisionShape::MakeSphere(SphereRadius), // Crea una sfera per il trace
 			CollisionParams
 		);
+		
+		if (HitResult.GetActor() == SpawnedActor[Index])
+		{
+			bHit = false;
+		}
 
 		if (bHit) return;
         

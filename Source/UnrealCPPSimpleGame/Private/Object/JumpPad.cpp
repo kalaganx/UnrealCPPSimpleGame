@@ -50,8 +50,8 @@ void AJumpPad::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* 
 		UPrimitiveComponent* OtherActorComp = Cast<UPrimitiveComponent>(OtherActor->GetRootComponent());
 		if (OtherActorComp && OtherActorComp->IsSimulatingPhysics())
 		{
-			// Apply an upward impulse
-			FVector LaunchDirection = FVector(0.0f, 0.0f, 1.0f); // Upwards direction
+			
+			FVector LaunchDirection = this->GetActorUpVector();    //FVector(0.0f, 0.0f, 1.0f); // Upwards direction
 			OtherActorComp->AddImpulse(LaunchDirection * LaunchForce, NAME_None, true);
 		}
 		else if (ACharacter* Character = Cast<ACharacter>(OtherActor))
@@ -59,7 +59,7 @@ void AJumpPad::OnOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* 
 			// For characters, modify their velocity directly
 			if (Character->GetCharacterMovement())
 			{
-				FVector LaunchVelocity = FVector(0.0f, 0.0f, LaunchForce);
+				FVector LaunchVelocity = GetActorUpVector() * LaunchForce;
 				Character->LaunchCharacter(LaunchVelocity, true, true);
 			}
 		}
