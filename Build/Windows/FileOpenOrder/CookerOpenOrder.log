@@ -874,63 +874,63 @@
 "../../../Engine/Content/MapTemplates/SM_Template_Map_Floor.ubulk" 873
 "../../../Engine/Content/MapTemplates/SM_Template_Map_Floor.uasset" 874
 "../../../Engine/Content/MapTemplates/SM_Template_Map_Floor.uexp" 875
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/UI/WBP_Istruzioni.uasset" 876
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/UI/WBP_Istruzioni.uexp" 877
-"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP_Skeleton.uasset" 878
-"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP_Skeleton.uexp" 879
-"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP_Mat.uasset" 880
-"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP_Mat.uexp" 881
-"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP_PhysicsAsset.uasset" 882
-"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP_PhysicsAsset.uexp" 883
-"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP.uasset" 884
-"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP.uexp" 885
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_Look.uasset" 886
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_Look.uexp" 887
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/SpawnablePlatform/BP_Test2.uasset" 888
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/SpawnablePlatform/BP_Test2.uexp" 889
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_BlockSelection.uasset" 890
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_BlockSelection.uexp" 891
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_Jump.uasset" 892
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_Jump.uexp" 893
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_DestroyBlock.uasset" 894
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_DestroyBlock.uexp" 895
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_SpawnBlock.uasset" 896
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_SpawnBlock.uexp" 897
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_Move.uasset" 898
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_Move.uexp" 899
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/IMC_MainInputMap.uasset" 900
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/IMC_MainInputMap.uexp" 901
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/SpawnablePlatform/BP_JumpPad.uasset" 902
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/SpawnablePlatform/BP_JumpPad.uexp" 903
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/SpawnablePlatform/BP_Test.uasset" 904
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/SpawnablePlatform/BP_Test.uexp" 905
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/BP_PlayerCharater.uasset" 906
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/BP_PlayerCharater.uexp" 907
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/GM_BaseGameMode.uasset" 908
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/GM_BaseGameMode.uexp" 909
-"../../../Engine/Content/BasicShapes/Cylinder.ubulk" 910
-"../../../Engine/Content/BasicShapes/Cylinder.uasset" 911
-"../../../Engine/Content/BasicShapes/Cylinder.uexp" 912
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_Teleport.uasset" 913
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_Teleport.uexp" 914
-"../../../Engine/Content/EngineSky/M_SimpleSkyDome.uasset" 915
-"../../../Engine/Content/EngineSky/M_SimpleSkyDome.uexp" 916
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/Level1.uexp" 917
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/Level1.umap" 918
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/TestMap.uexp" 919
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/TestMap.umap" 920
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_PressurePlate.uasset" 921
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_PressurePlate.uexp" 922
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_MobilePlatform.uasset" 923
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_MobilePlatform.uexp" 924
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/Levl2.uexp" 925
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/Levl2.umap" 926
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_PressurePlate.uasset" 876
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_PressurePlate.uexp" 877
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/UI/WBP_Istruzioni.uasset" 878
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/UI/WBP_Istruzioni.uexp" 879
+"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP_Skeleton.uasset" 880
+"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP_Skeleton.uexp" 881
+"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP_Mat.uasset" 882
+"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP_Mat.uexp" 883
+"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP_PhysicsAsset.uasset" 884
+"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP_PhysicsAsset.uexp" 885
+"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP.uasset" 886
+"../../../Engine/Content/Tutorial/SubEditors/TutorialAssets/Character/TutorialTPP.uexp" 887
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_Look.uasset" 888
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_Look.uexp" 889
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/SpawnablePlatform/BP_Test2.uasset" 890
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/SpawnablePlatform/BP_Test2.uexp" 891
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_BlockSelection.uasset" 892
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_BlockSelection.uexp" 893
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_Jump.uasset" 894
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_Jump.uexp" 895
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_DestroyBlock.uasset" 896
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_DestroyBlock.uexp" 897
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_SpawnBlock.uasset" 898
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_SpawnBlock.uexp" 899
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_Move.uasset" 900
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/InputAction/IA_Move.uexp" 901
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/IMC_MainInputMap.uasset" 902
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/Input/IMC_MainInputMap.uexp" 903
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/SpawnablePlatform/BP_JumpPad.uasset" 904
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/SpawnablePlatform/BP_JumpPad.uexp" 905
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/SpawnablePlatform/BP_Test.uasset" 906
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/SpawnablePlatform/BP_Test.uexp" 907
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/BP_PlayerCharater.uasset" 908
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/BP_PlayerCharater.uexp" 909
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/GM_BaseGameMode.uasset" 910
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Player/GM_BaseGameMode.uexp" 911
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_MobilePlatform.uasset" 912
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_MobilePlatform.uexp" 913
+"../../../Engine/Content/BasicShapes/Cylinder.ubulk" 914
+"../../../Engine/Content/BasicShapes/Cylinder.uasset" 915
+"../../../Engine/Content/BasicShapes/Cylinder.uexp" 916
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_Teleport.uasset" 917
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_Teleport.uexp" 918
+"../../../Engine/Content/EngineSky/M_SimpleSkyDome.uasset" 919
+"../../../Engine/Content/EngineSky/M_SimpleSkyDome.uexp" 920
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/Levl2.uexp" 921
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/Levl2.umap" 922
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/Level1.uexp" 923
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/Level1.umap" 924
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/room/M_Rosso.uasset" 925
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/room/M_Rosso.uexp" 926
 "C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_FinishLine.uasset" 927
 "C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Interactable/BP_FinishLine.uexp" 928
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/room/M_Rosso.uasset" 929
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/room/M_Rosso.uexp" 930
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/FinalLevel.uexp" 931
-"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/FinalLevel.umap" 932
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/FinalLevel.uexp" 929
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/FinalLevel.umap" 930
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/TestMap.uexp" 931
+"C:/Users/matte/Documents/Unreal Projects/UnrealCPPSimpleGame/Content/Scene/TestMap.umap" 932
 "../../../Engine/Content/Maps/Entry_BuiltData.uasset" 933
 "../../../Engine/Content/Maps/Entry_BuiltData.uexp" 934
 "../../../Engine/Content/Maps/Entry.uexp" 935

@@ -67,17 +67,9 @@ void USpawnPlatform::SpawnBloack()
 		CollisionParams.AddIgnoredActor(SpawnPoint->GetAttachmentRootActor()); // Ignora l'attore stesso
 
 		// Esegui lo Sphere Trace
-		bool bHit = World->SweepSingleByChannel(
-			HitResult,
-			SpawnLocation,
-			SpawnLocation,
-			FQuat::Identity, // Nessuna rotazione
-			ECC_Visibility,  // Canale di collisione
-			FCollisionShape::MakeSphere(SphereRadius), // Crea una sfera per il trace
-			CollisionParams
-		);
+		bool bHit = World->SweepSingleByChannel(HitResult, SpawnLocation,SpawnLocation, FQuat::Identity, ECC_Visibility,  FCollisionShape::MakeSphere(SphereRadius), CollisionParams);
 		
-		if (HitResult.GetActor() == SpawnedActor[Index])
+		if (SpawnedActor[Index] && HitResult.GetActor() == SpawnedActor[Index])
 		{
 			bHit = false;
 		}

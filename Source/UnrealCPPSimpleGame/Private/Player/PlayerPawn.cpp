@@ -66,6 +66,7 @@ void APlayerPawn::Tick(float DeltaTime)
         {
             // Tocca il soffitto: applica gravità per "scendere"
             CurrentVelocity.Z = 0;
+            CurrentVelocity.Z += Gravity * DeltaTime;
         }
         else
         {
