@@ -2,9 +2,9 @@
 
 
 #include "Player/SpawnPlatform.h"
-
 #include "Components/TextRenderComponent.h"
 #include "TimerManager.h"
+#include "Kismet/KismetSystemLibrary.h"
 
 // Sets default values for this component's properties
 USpawnPlatform::USpawnPlatform()
@@ -23,7 +23,7 @@ void USpawnPlatform::BeginPlay()
 	Super::BeginPlay();
 
 	// ...
-	SpawnedActor.SetNum(SelectedActor.Num());
+	SpawnedActor.SetNum(SelectedActors.Num());
 }
 
 
@@ -37,7 +37,7 @@ void USpawnPlatform::TickComponent(float DeltaTime, ELevelTick TickType, FActorC
 
 void USpawnPlatform::SpawnBloack()
 {
-	if (SelectedActor.Num() == 0 || !SelectedActor.IsValidIndex(Index)) // Check if the ActorClass is valid
+	if (SelectedActors.Num() == 0 || !SelectedActors.IsValidIndex(Index)) // Check if the ActorClass is valid
 	{
 		UE_LOG(LogTemp, Error, TEXT("No ActorClass provided for spawning!"));
 		return;
@@ -53,28 +53,36 @@ void USpawnPlatform::SpawnBloack()
 	UWorld* World = GetWorld();
 	if (World)
 	{
+		// Ottieni posizione e rotazione della Box
 		FVector SpawnLocation = SpawnPoint->GetComponentLocation();
 		FRotator SpawnRotation = SpawnPoint->GetComponentRotation();
-
-		// Raggio della sfera
-		float SphereRadius = 20.f;
-
-		// Risultato del trace
-		FHitResult HitResult;
-
-		// Parametri di collisione
-		FCollisionQueryParams CollisionParams;
-		CollisionParams.AddIgnoredActor(SpawnPoint->GetAttachmentRootActor()); // Ignora l'attore stesso
-
-		// Esegui lo Sphere Trace
-		bool bHit = World->SweepSingleByChannel(HitResult, SpawnLocation,SpawnLocation, FQuat::Identity, ECC_Visibility,  FCollisionShape::MakeSphere(SphereRadius), CollisionParams);
 		
-		if (SpawnedActor[Index] && HitResult.GetActor() == SpawnedActor[Index])
+
+		// Array per contenere gli attori colpiti
+		TArray<AActor*> OverlappedActors;
+
+		// Configura il rilevamento per tutti i tipi di oggetti
+		TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+		for (int32 i = 0; i < EObjectTypeQuery::ObjectTypeQuery_MAX; ++i)
 		{
-			bHit = false;
+			ObjectTypes.Add(static_cast<EObjectTypeQuery>(i));
 		}
 
-		if (bHit) return;
+		// Attori da ignorare
+		TArray<AActor*> ActorsToIgnore;
+		ActorsToIgnore.Add(SpawnPoint->GetAttachmentRootActor()); // Ignora l'attore stesso
+		
+		// Esegui il Box Overlap
+		UKismetSystemLibrary::BoxOverlapActors(World,SpawnLocation,HalfSizes,ObjectTypes,nullptr,ActorsToIgnore,OverlappedActors);
+
+		// Disegna la box per il debug
+		UKismetSystemLibrary::DrawDebugBox(World,SpawnLocation,HalfSizes,FColor::Red,SpawnRotation,5.0f,2.0f );
+
+		// Controlla se il risultato del Box Overlap include l'attore specificato
+		if (SpawnedActor.IsValidIndex(Index) && !OverlappedActors.Contains(SpawnedActor[Index]) && OverlappedActors.Num() > 0)
+		{
+			return; // Evita ulteriori azioni se è stato rilevato l'attore
+		}
         
 		if (SpawnedActor[Index])
 		{
@@ -83,7 +91,7 @@ void USpawnPlatform::SpawnBloack()
 		else
 		{
 			// Spawn the actor
-			SpawnedActor[Index] = World->SpawnActor<AActor>(SelectedActor[Index], SpawnLocation, SpawnRotation);
+			SpawnedActor[Index] = World->SpawnActor<AActor>(SelectedActors[Index], SpawnLocation, SpawnRotation);
 		}
 		
 	}
@@ -109,9 +117,9 @@ void USpawnPlatform::ChangeIndex(const int& InputValue=0)
 	Index = Index + InputValue;
 	if (Index < 0)
 	{
-		Index = SelectedActor.Num() - 1;
+		Index = SelectedActors.Num() - 1;
 	}
-	if (Index > SelectedActor.Num()-1)
+	if (Index > SelectedActors.Num()-1)
 	{
 		Index = 0;
 	}

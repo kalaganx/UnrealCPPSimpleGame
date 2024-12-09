@@ -3,11 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "SpanablePlatform.h"
 #include "GameFramework/Actor.h"
 #include "JumpPad.generated.h"
 
 UCLASS()
-class UNREALCPPSIMPLEGAME_API AJumpPad : public AActor
+class UNREALCPPSIMPLEGAME_API AJumpPad : public ASpanablePlatform
 {
 	GENERATED_BODY()
 	

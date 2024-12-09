@@ -15,17 +15,20 @@ class UNREALCPPSIMPLEGAME_API USpawnPlatform : public UActorComponent
 protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Actors")
-	TArray<UClass*> SelectedActor;
+	TArray<UClass*> SelectedActors;
     	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Actors")
 	TArray<AActor*> SpawnedActor;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY()
+	FVector HalfSizes=FVector(40,40,40);
+
+	UPROPERTY()
 	USceneComponent* SpawnPoint;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UPROPERTY()
 	class UTextRenderComponent* TextRender;
-
+	
 	UPROPERTY()
 	int Index = 0;
 

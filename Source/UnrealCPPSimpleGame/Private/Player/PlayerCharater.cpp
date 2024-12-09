@@ -8,6 +8,8 @@
 #include "Player/SpawnPlatform.h"
 #include "Components/TextRenderComponent.h"
 #include "TimerManager.h"
+#include "Blueprint/UserWidget.h"
+
 
 
 // Sets default values
@@ -43,6 +45,7 @@ void APlayerCharater::BeginPlay()
 {
     Super::BeginPlay();
     SetSetting();
+    CreateWidgetP();
 }
 
 // Called every frame
@@ -133,4 +136,31 @@ void APlayerCharater::SetSetting()
     if (!SpawnPlatform) return;
     SpawnPlatform -> StartingSet(SpawnPoint,TextRender);
     SpawnPlatform -> ChangeIndex(0);
+}
+
+void APlayerCharater::CreateWidgetP()
+{
+    if (!WidgetClass)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("WidgetClass non è stato assegnato!"));
+        return;
+    }
+    
+    UWorld* World = GetWorld();
+    if (!World) return;
+
+    // Crea il widget
+    UUserWidget* WidgetInstance = CreateWidget<UUserWidget>(World, WidgetClass);
+    if (WidgetInstance)
+    {
+        // Aggiungi il widget alla viewport
+        WidgetInstance->AddToViewport();
+
+        // Log di debug
+        UE_LOG(LogTemp, Warning, TEXT("Widget WBP_Istruzioni aggiunto alla viewport."));
+    }
+    else
+    {
+        UE_LOG(LogTemp, Warning, TEXT("Impossibile creare l'istanza del widget."));
+    }
 }

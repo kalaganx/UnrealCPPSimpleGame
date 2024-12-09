@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Player/SpawnPlatform.h"
+#include "Blueprint/UserWidget.h"
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "PlayerCharater.generated.h"
@@ -20,6 +21,9 @@ class UNREALCPPSIMPLEGAME_API APlayerCharater : public ACharacter
 
 protected:
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	class TSubclassOf<UUserWidget> WidgetClass;
+	
 	UPROPERTY(EditAnywhere , BlueprintReadWrite)
 	USpawnPlatform* SpawnPlatform;
 	
@@ -73,4 +77,7 @@ protected:
 
 	UFUNCTION()
 	void SetSetting();
+
+	UFUNCTION()
+	void CreateWidgetP();
 };
